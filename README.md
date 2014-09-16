@@ -12,17 +12,16 @@ sudo chown -R <you>:<your group> /etc/pushroulette
 chmod +x pushroulette-sinatra/pushroulette.rb
 ```
 
-## Run
-
-```bash
-./pushroulette.rb
-```
-
 ## Dependencies
 
-Install necessary gems:
+Install bundler if not already installed:
 ```bash
-gem install soundcloud sinatra open_uri_redirections
+gem install bundler
+```
+
+Run Bundle install to install dependencies
+```bash
+bundle install
 ```
 
 Requires [ffmpeg](http://www.ffmpeg.org/) for encoding and decoding all non-wav files (which work natively)
@@ -39,4 +38,17 @@ Linux (using aptitude):
 
 ```bash
 apt-get install ffmpeg libavcodec-extra-53
+```
+
+## Run
+
+```bash
+# for development run
+thin start --debug --trace
+
+# to run as daemon
+thin start -d
+# to kill this process run
+thin stop
+./pushroulette.rb
 ```
