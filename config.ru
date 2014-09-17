@@ -3,6 +3,8 @@ require 'bundler'
 
 Bundler.require
 
-require './pushroulette'
+require './app/pushroulette'
+
+set :port, 4567
 
 run Pushroulette

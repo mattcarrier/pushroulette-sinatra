@@ -1,27 +1,14 @@
-#!/usr/bin/ruby
-require 'sinatra/base'
+module Clips
 
-class Pushroulette < Sinatra::Base
-  @client = SoundCloud.new(:client_id => 'cdbefc208d1db7a07c5af0e27e10b403')
+  $client = SoundCloud.new(:client_id => 'cdbefc208d1db7a07c5af0e27e10b403')
 
-  get '/hi' do
-    "Hello World!"
-  end
-
-  post '/github/payload' do
-    playClip(:deleteAfterPlay => true)
-  end
-
-  post '/store/clips' do
-    puts params[:num]
-    params[:num].nil? ? downloadClips : downloadClips(params[:num].to_i)
-  end
 
   def playClip(clip, deleteAfterPlay=false)
     played = false
     songs = 0;
     while !played do
       file = clip.nil? ? Dir.glob("/etc/pushroulette/library/pushroulette_*.wav").sample : clip
+      puts "file #{file}"
       played = system "ffplay -autoexit -nodisp #{file}" || !clip.nil?
 
       if deleteAfterPlay
@@ -39,7 +26,7 @@ class Pushroulette < Sinatra::Base
   def downloadClips(num=1)
     i = 0
     while i < num do
-      tracks = @client.get('/tracks', :q => 'downloadable', :limit => 50, :offset => [*0..8001].sample)
+      tracks = $client.get('/tracks', :q => 'downloadable', :limit => 50, :offset => [*0..8001].sample)
       for track in tracks
         if track.original_content_size < 10000000 and !track.download_url.nil?
           open('/etc/pushroulette/library/' + track.title + '.' + track.original_format, 'wb') do |file|
