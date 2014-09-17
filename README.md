@@ -6,11 +6,6 @@ RESTFul PushRoulette
 ## Installation
 
     git clone https://github.com/Astonish-Results/pushroulette-sinatra
-```bash
-sudo mkdir -p /etc/pushroulette/library
-sudo chown -R <you>:<your group> /etc/pushroulette
-chmod +x pushroulette-sinatra/pushroulette.rb
-```
 
 ## Dependencies
 
@@ -40,14 +35,23 @@ Linux (using aptitude):
 apt-get install ffmpeg libavcodec-extra-53
 ```
 
-## Run
+## Development
 
 ```bash
-# for development run
-thin start --debug --trace
+# store some songs
+curl --data '' http://localhost:4567/store/clips?num=5
 
-# to run as daemon
-thin start -d
-# to kill this process run
-thin stop
+# for development run in pushroulette-sinatra directory
+thin start
+```
+
+## Install Service
+
+```bash
+# store some songs
+curl --data '' http://localhost:4567/store/clips?num=5
+
+# install init.d script and start service
+sudo cp pushroulette-sinatra/admin/initd/pushroulette-sinatra /etc/init.d/
+sudo service pushroulette-sinatra start
 ```
