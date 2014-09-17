@@ -24,14 +24,14 @@ Run Bundle install to install dependencies
 bundle install
 ```
 
-Requires [ffmpeg](http://www.ffmpeg.org/) for encoding and decoding all non-wav files (which work natively)
+Requires [libav](https://libav.org/) for encoding and decoding all non-wav files (which work natively)
 
-## Getting ffmpeg set up
+## Getting libav set up
 
 Mac (using [homebrew](http://brew.sh)):
 
 ```bash
-brew install ffmpeg --with-libvorbis --with-ffplay --with-theora
+brew install libav --with-libvorbis --with-sdl --with-theora
 ```
 
 Linux (using aptitude):
@@ -50,5 +50,4 @@ thin start --debug --trace
 thin start -d
 # to kill this process run
 thin stop
-./pushroulette.rb
 ```
