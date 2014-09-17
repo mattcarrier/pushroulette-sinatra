@@ -2,7 +2,11 @@ require 'sinatra/base'
 require './app/routes/github'
 require './app/routes/jenkins'
 
-class Pushroulette < Sinatra::Base
-  use Github
-  use Jenkins
+module Pushroulette
+  class App < Sinatra::Base
+
+    use Pushroulette::Github
+    use Pushroulette::Jenkins
+
+  end
 end

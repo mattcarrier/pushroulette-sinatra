@@ -5,6 +5,5 @@ Bundler.require
 
 require './app/pushroulette'
 
-set :port, 4567
 
-run Pushroulette
+run Pushroulette::App

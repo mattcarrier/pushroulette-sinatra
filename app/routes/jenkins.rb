@@ -1,9 +1,11 @@
-require 'sinatra/base'
+require './app/routes/base-route'
 
-class Jenkins < Sinatra::Base
+module Pushroulette
+  class Jenkins < Pushroulette::BaseRoute
 
-  get '/jenkins-hi' do
-    'jenking says hi'
+    get '/jenkins-hi' do
+      'jenking says hi'
+    end
+
   end
-
 end
