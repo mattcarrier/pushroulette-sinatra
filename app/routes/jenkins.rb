@@ -10,7 +10,7 @@ module Pushroulette
 
     post '/jenkins/job-finalized' do
       data = JSON.parse request.body.read
-      failure_clip = @config['failureClip']
+      failure_clip = @config['buildServer']['failureClip']
       clip_name =  failure_clip.kind_of?(Array) ? failure_clip.sample : failure_clip
       puts clip_name
       if data['build']['status'] == 'FAILURE'
