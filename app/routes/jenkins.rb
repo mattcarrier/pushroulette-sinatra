@@ -1,8 +1,8 @@
-require './app/base/base'
+require './app/base/build-server-base'
 require 'json'
 
 module Pushroulette
-  class Jenkins < Pushroulette::Base
+  class Jenkins < Pushroulette::BuildServerBase
 
     get '/jenkins-hi' do
       'jenking says hi'
@@ -10,12 +10,9 @@ module Pushroulette
 
     post '/jenkins/job-finalized' do
       data = JSON.parse request.body.read
-      failure_clip = @config['buildServer']['failureClip']
-      clip_name =  failure_clip.kind_of?(Array) ? failure_clip.sample : failure_clip
-      puts clip_name
-      if data['build']['status'] == 'FAILURE'
-        playClip("./app/clips/#{clip_name}.mp3", false)
-      end
+      failure_clip = getFailureClip()
+
+      playClip("./app/clips/#{failure_clip}.mp3", false) if jenkinsBuildFailed? data
     end
 
   end
