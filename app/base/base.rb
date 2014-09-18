@@ -2,7 +2,7 @@ require 'sinatra/base'
 require 'yaml'
 
 module Pushroulette
-  class BaseRoute < Sinatra::Base
+  class Base < Sinatra::Base
 
 
     def initialize(app)

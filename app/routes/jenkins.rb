@@ -1,8 +1,8 @@
-require './app/routes/base-route'
+require './app/base/base'
 require 'json'
 
 module Pushroulette
-  class Jenkins < Pushroulette::BaseRoute
+  class Jenkins < Pushroulette::Base
 
     get '/jenkins-hi' do
       'jenking says hi'
