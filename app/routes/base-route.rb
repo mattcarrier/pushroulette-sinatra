@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'yaml'
 
 module Pushroulette
   class BaseRoute < Sinatra::Base
@@ -7,6 +8,11 @@ module Pushroulette
     def initialize(app)
       super
       @client = SoundCloud.new(:client_id => 'cdbefc208d1db7a07c5af0e27e10b403')
+      @config = readConfigYaml
+    end
+
+    def readConfigYaml
+      YAML.load(File.open('./config.yaml'))
     end
 
     def playClip(clip, deleteAfterPlay=false)
