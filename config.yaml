@@ -1,0 +1,5 @@
+buildServer:
+  failureClip:
+    # - 'your-shit-broken'
+    - 'fail-trombone'
+    # - 'fail-buzzer'

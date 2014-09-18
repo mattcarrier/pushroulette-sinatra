@@ -1,8 +1,8 @@
 require 'json'
-require './app/routes/base-route'
+require './app/base/base'
 
 module Pushroulette
-  class Github < Pushroulette::BaseRoute
+  class Github < Pushroulette::Base
 
     get '/hi' do
       "Hello World!"
