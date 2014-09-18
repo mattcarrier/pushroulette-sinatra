@@ -1,7 +1,7 @@
 pushroulette-sinatra
 ====================
 
-RESTFul PushRoulette
+RESTful PushRoulette
 
 ## Installation
 
