@@ -16,7 +16,8 @@ module Pushroulette
     end
 
     def jenkinsBuildFailed?(data)
-      data['build']['status'] == 'FAILURE'
+      status = data['build']['status']
+      status == 'FAILURE' || status == 'UNSTABLE'
     end
 
   end
