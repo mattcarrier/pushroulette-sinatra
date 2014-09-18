@@ -15,5 +15,9 @@ module Pushroulette
       playClip("./app/clips/#{failure_clip}.mp3", false) if jenkinsBuildFailed? data
     end
 
+    def jenkinsBuildFailed?(data)
+      data['build']['status'] == 'FAILURE'
+    end
+
   end
 end
