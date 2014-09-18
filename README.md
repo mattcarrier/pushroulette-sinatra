@@ -38,20 +38,20 @@ apt-get install ffmpeg libavcodec-extra-53
 ## Development
 
 ```bash
-# store some songs
-curl --data '' http://localhost:4567/store/clips?num=5
-
 # for development run in pushroulette-sinatra directory
 thin start
+
+# store some songs
+curl --data '' http://localhost:4567/store/clips?num=5
 ```
 
 ## Install Service
 
 ```bash
-# store some songs
-curl --data '' http://localhost:4567/store/clips?num=5
-
 # install init.d script and start service
 sudo cp pushroulette-sinatra/admin/initd/pushroulette-sinatra /etc/init.d/
 sudo service pushroulette-sinatra start
+
+# store some songs
+curl --data '' http://localhost:4567/store/clips?num=5
 ```
