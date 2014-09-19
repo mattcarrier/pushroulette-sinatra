@@ -5,12 +5,12 @@ module Pushroulette
   class BuildServerBase < Pushroulette::Base
 
     def getFailureClip()
-      failure_clip = @config['buildServer']['failureClip']
+      failure_clip = buildServerConfig('failureClip')
       failure_clip.kind_of?(Array) ? failure_clip.sample : failure_clip
     end
 
     def getBackToNormalClip()
-      back_to_normal_clip = @config['buildServer']['backToNormalClip']
+      back_to_normal_clip = buildServerConfig('backToNormalClip')
       back_to_normal_clip.kind_of?(Array) ? back_to_normal_clip.sample : back_to_normal_clip
     end
 
@@ -35,6 +35,8 @@ module Pushroulette
       build.save
     end
 
-
+    def buildServerConfig(config_key)
+      pushrouletteConfig('buildServer')[config_key]
+    end
   end
 end

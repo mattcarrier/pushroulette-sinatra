@@ -4,10 +4,6 @@ require './app/base/base'
 module Pushroulette
   class Github < Pushroulette::Base
 
-    get '/hi' do
-      "Hello World!"
-    end
-
     post '/github/payload' do
       request.body.rewind  # in case someone already read it
       data = JSON.parse request.body.read
@@ -15,9 +11,27 @@ module Pushroulette
       playClip(nil, true)
     end
 
-    post '/store/clips' do
-      params[:num].nil? ? downloadClips : downloadClips(params[:num].to_i)
+    def initialize(app)
+      super
+      @users = githubConfig('users')
+      for user in @users
+        genreClipDir = "/etc/pushroulette/library/#{user[genre]}"
+        if (!(Dir.exists?(genreClipDir)) || !(Dir.glob("#{genreClipDir}/pushroulette_*.mp3").any?))
+          downloadClips(5, user[genre])
+        end
+      end
+
+      if !(Dir.glob("/etc/pushroulette/library/pushroulette_*.mp3").any?)
+        downloadClips(5)
+      end
     end
 
+    def genreForUser(user)
+      @users[user]['genre']
+    end
+
+    def githubConfig(config_key)
+      pushrouletteConfig('github')[config_key]
+    end
   end
 end

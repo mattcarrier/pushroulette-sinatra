@@ -12,7 +12,7 @@ SCRIPT='thin start -p 4567 -a 0.0.0.0 -c /home/pi/pushroulette-sinatra'
 RUNAS=root
 
 PIDFILE=/var/run/pushroulette-sinatra.pid
-LOGFILE=/etc/pushroulette/logs/pushroulette-sinatra.log
+LOGFILE=/var/log/pushroulette-sinatra/pushroulette-sinatra.log
 
 start() {
   if [ -f /var/run/pushroulette-sinatra.pid ] && kill -0 $(cat /var/run/pushroulette-sinatra.pid); then
@@ -20,8 +20,8 @@ start() {
     return 1
   fi
 
-  mkdir -p /etc/pushroulette/logs
-  mkdir -p /etc/pushroulette/library
+  mkdir -p /var/log/pushroulette-sinatra
+  mkdir -p /etc/pushroulette-sinatra/library
 
   echo 'Starting service…' >&2
   local CMD="$SCRIPT &> \"$LOGFILE\" & echo \$!"
@@ -46,7 +46,7 @@ uninstall() {
   if [ "$SURE" = "yes" ]; then
     stop
     rm -f "$PIDFILE"
-    echo "Notice: log file is not be removed: '$LOGFILE'" >&2
+    echo "Notice: log files will not be removed: '$LOGFILE'" >&2
     update-rc.d -f pushroulette-sinatra remove
     rm -fv "$0"
   fi

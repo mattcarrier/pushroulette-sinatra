@@ -1,7 +1,34 @@
-buildServer:
-  failureClip:
-    # - 'your-shit-broken'
-    - 'fail-trombone'
-    # - 'fail-buzzer'
-  backToNormalClip:
-    - 'tada'
+pushroulette:
+  github:
+    users:
+      - mcarrierastonish:
+        genre: Trip Hop
+      - joshschaeffer:
+        genre: Audiobooks
+      - hzhu-astonish:
+        genre: Metal
+      - bsawyer:
+        genre: Country
+      - campbill:
+        genre: Comedy
+      - djwatson82
+        genre: Classical
+      - dotDeeka:
+        genre: Folk
+      - jonfromri:
+        genre: Rap
+      - kjackvony:
+        genre: Religion & Spirituality
+      - kylebober:
+        genre: Reggae
+      - mnelson1:
+        genre: Technology
+      - wadeleveille:
+        genre: Piano
+  buildServer:
+    failureClip:
+      # - 'your-shit-broken'
+      - 'fail-trombone'
+      # - 'fail-buzzer'
+    backToNormalClip:
+      - 'tada'
