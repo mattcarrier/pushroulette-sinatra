@@ -26,7 +26,8 @@ module Pushroulette
         setPreviousBuildAsFailed(data['name'])
 
       elsif previousBuildFailed?(data['name'])
-        playClip('./app/clips/tada.mp3', false)
+        back_to_normal_clip = getBackToNormalClip()
+        playClip("./app/clips/#{back_to_normal_clip}.mp3", false)
         setPreviousBuildAsSuccessful(data['name'])
       end
 

@@ -3,3 +3,5 @@ buildServer:
     # - 'your-shit-broken'
     - 'fail-trombone'
     # - 'fail-buzzer'
+  backToNormalClip:
+    - 'tada'

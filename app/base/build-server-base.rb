@@ -9,6 +9,11 @@ module Pushroulette
       failure_clip.kind_of?(Array) ? failure_clip.sample : failure_clip
     end
 
+    def getBackToNormalClip()
+      back_to_normal_clip = @config['buildServer']['backToNormalClip']
+      back_to_normal_clip.kind_of?(Array) ? back_to_normal_clip.sample : back_to_normal_clip
+    end
+
     def previousBuildFailed?(build_key)
       build = Pushroulette::Build.find_or_create(:build_key => build_key)
       if build.status == 0
