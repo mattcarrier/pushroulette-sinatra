@@ -10,8 +10,11 @@ module Pushroulette
       data = JSON.parse request.body.read
       puts data
       @users = githubConfig('users')
+      puts data['pusher']
+      puts data['pusher']['name']
       user = @users[data['pusher']['name']]
-      playClip(nil, true, user.nil? ? nil : user[genre])
+      puts user['genre']
+      playClip(nil, true, user.nil? ? nil : user['genre'])
     end
 
     post '/github/initialize' do
