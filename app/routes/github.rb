@@ -9,6 +9,7 @@ module Pushroulette
       request.body.rewind  # in case someone already read it
       data = JSON.parse request.body.read
       puts data
+      @users = githubConfig('users')
       user = @users[data['pusher']['name']]
       playClip(nil, true, user.nil? ? nil : user[genre])
     end
