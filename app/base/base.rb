@@ -31,9 +31,9 @@ module Pushroulette
         played = false
         songs = 0;
         if (genre.any?)
-          dir = "/etc/pushroulette/library/#{genre.first}/"
+          dir = "/etc/pushroulette-sinatra/library/#{genre.first}/"
         else
-          dir = "/etc/pushroulette/library/"
+          dir = "/etc/pushroulette-sinatra/library/"
         end
         while !played do
           file = clip.nil? ? Dir.glob("#{dir}pushroulette_*.mp3").sample : clip
@@ -89,10 +89,10 @@ module Pushroulette
       i = 0
       while i < num do
         if (genre.any?)
-          dir = "/etc/pushroulette/library/#{genre.first}/"
+          dir = "/etc/pushroulette-sinatra/library/#{genre.first}/"
           tracks = @client.get('/tracks', :filter => 'downloadable', :limit => 50, :genres => genre.first.downcase, :offset => [*0..totalClips].sample).shuffle
         else
-          dir = "/etc/pushroulette/library/"
+          dir = "/etc/pushroulette-sinatra/library/"
           tracks = @client.get('/tracks', :filter => 'downloadable', :limit => 50, :offset => [*0..8000].sample).shuffle
         end
         for track in tracks

@@ -19,14 +19,14 @@ module Pushroulette
         @users.each do |username, props|
           puts "username: #{username}"
           puts "props: #{props}"
-          genreClipDir = "/etc/pushroulette/library/#{props['genre']}"
+          genreClipDir = "/etc/pushroulette-sinatra/library/#{props['genre']}"
           FileUtils::mkdir_p(genreClipDir)
           if 5 > Dir.glob("#{genreClipDir}/pushroulette_*.mp3").length
             downloadClips(5, props['genre'])
           end
         end
 
-        if 5 > Dir.glob("/etc/pushroulette/library/pushroulette_*.mp3").length
+        if 5 > Dir.glob("/etc/pushroulette-sinatra/library/pushroulette_*.mp3").length
           downloadClips(5)
         end
       }
