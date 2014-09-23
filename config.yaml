@@ -1,29 +1,29 @@
 pushroulette:
   github:
     users:
-      - mcarrierastonish:
-        genre: Trip Hop
-      - joshschaeffer:
-        genre: Audiobooks
-      - hzhu-astonish:
-        genre: Metal
-      - bsawyer:
-        genre: Country
-      - campbill:
-        genre: Comedy
-      - djwatson82
-        genre: Classical
-      - dotDeeka:
-        genre: Folk
-      - jonfromri:
+      mcarrierastonish:
         genre: Rap
-      - kjackvony:
-        genre: Religion & Spirituality
-      - kylebober:
+      joshschaeffer:
+        genre: Audiobooks
+      hzhu-astonish:
+        genre: Metal
+      bsawyer:
+        genre: Country
+      campbill:
+        genre: Comedy
+      djwatson82:
+        genre: Classical
+      dotDeeka:
+        genre: Folk
+      jonfromri:
+        genre: Rap
+      kjackvony:
+        genre: Religion
+      kylebober:
         genre: Reggae
-      - mnelson1:
+      mnelson1:
         genre: Technology
-      - wadeleveille:
+      wadeleveille:
         genre: Piano
   buildServer:
     failureClip:
