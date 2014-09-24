@@ -157,7 +157,7 @@ module Pushroulette
             open(dir + track.title + '.' + track.original_format, 'wb') do |file|
               file << open(track.download_url + '?client_id=cdbefc208d1db7a07c5af0e27e10b403', :allow_redirections => :all).read
               start = [*0..((track.duration / 1000) - 4)].sample
-              sliceCreated = system "avconv -ss #{start} -i \"#{file.path}\" -t 5 #{dir}pushroulette_#{SecureRandom.uuid}.mp3"
+              sliceCreated = system "avconv -ss #{start} -i \"#{file.path}\" -t 10 #{dir}pushroulette_#{SecureRandom.uuid}.mp3"
               File.delete(file)
 
               if !sliceCreated
