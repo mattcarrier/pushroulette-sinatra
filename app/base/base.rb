@@ -73,8 +73,8 @@ module Pushroulette
 
     def speak(text)
       puts "speaking #{text}"
-      system "say #{text}" if OS.mac?
-      system "espeak #{text}" if OS.unix?
+      system "say \"#{text}\"" if OS.mac?
+      system "espeak \"#{text}\"" if OS.unix?
     end
 
     def playClip(clip, deleteAfterPlay=false, *genre)
