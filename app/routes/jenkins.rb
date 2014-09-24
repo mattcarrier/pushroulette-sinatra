@@ -18,19 +18,22 @@ module Pushroulette
     post '/jenkins/job-finalized' do
       data = JSON.parse request.body.read
 
-
-
       if jenkinsBuildFailed? data
         failure_clip = getFailureClip()
         playClip("./app/clips/#{failure_clip}.mp3", false)
+        speak("#{jenkinsJob(data)}, failed")
         setPreviousBuildAsFailed(data['name'])
-
       elsif previousBuildFailed?(data['name'])
         back_to_normal_clip = getBackToNormalClip()
         playClip("./app/clips/#{back_to_normal_clip}.mp3", false)
+        speak("#{jenkinsJob(data)}, is back to normal")
         setPreviousBuildAsSuccessful(data['name'])
       end
 
+    end
+
+    def jenkinsJob(data)
+      data['name']
     end
 
     def jenkinsBuildFailed?(data)

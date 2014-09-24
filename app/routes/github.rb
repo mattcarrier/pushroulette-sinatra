@@ -5,39 +5,26 @@ require './app/base/base'
 module Pushroulette
   class Github < Pushroulette::Base
 
+    def initialize(app)
+      super
+      @githubUsers = githubConfig('users')
+    end
+
     post '/github/payload' do
       request.body.rewind  # in case someone already read it
       data = JSON.parse request.body.read
       puts data
-      @users = githubConfig('users')
-      puts data['pusher']
-      puts data['pusher']['name']
-      user = @users[data['pusher']['name']]
-      puts user['genre']
+      if !data['pusher'].nil?
+        username = @githubUsers[data['pusher']['name']]
+        repository = data['repository']['name']
+        user = user(username)
+        puts username
+        puts user
+        if !user.nil?
+          speak("#{username}, pushed to #{repository}")
+        end
+      end
       playClip(nil, true, user.nil? ? nil : user['genre'])
-    end
-
-    post '/github/initialize' do
-      Thread.new {
-        @users = githubConfig('users')
-        @users.each do |username, props|
-          puts "username: #{username}"
-          puts "props: #{props}"
-          genreClipDir = "/etc/pushroulette-sinatra/library/#{props['genre']}"
-          FileUtils::mkdir_p(genreClipDir)
-          if 5 > Dir.glob("#{genreClipDir}/pushroulette_*.mp3").length
-            downloadClips(5, props['genre'])
-          end
-        end
-
-        if 5 > Dir.glob("/etc/pushroulette-sinatra/library/pushroulette_*.mp3").length
-          downloadClips(5)
-        end
-      }
-    end
-
-    def genreForUser(user)
-      @users[user]['genre']
     end
 
     def githubConfig(config_key)

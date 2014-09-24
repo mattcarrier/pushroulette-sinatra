@@ -1,31 +1,56 @@
 pushroulette:
+  users:
+    Matt Carrier:
+      genre: Rap
+    Josh Schaeffer:
+      genre: Audiobooks
+    Hongwei Zhu:
+      genre: Metal
+    Ben Sawyer:
+      genre: Country
+    Bill Campbell:
+      genre: Comedy
+    DJ Watson:
+      genre: Classical
+    Derek Pavao:
+      genre: Folk
+    Jon Burgess:
+      genre: Rap
+    Kristin Jackvony:
+      genre: Religion
+    Kyle Bober:
+      genre: Reggae
+    Mike Nelson:
+      genre: Technology
+    Wade Leveille:
+      genre: Piano
   github:
     users:
-      mcarrierastonish:
-        genre: Rap
-      joshschaeffer:
-        genre: Audiobooks
-      hzhu-astonish:
-        genre: Metal
-      bsawyer:
-        genre: Country
-      campbill:
-        genre: Comedy
-      djwatson82:
-        genre: Classical
-      dotDeeka:
-        genre: Folk
-      jonfromri:
-        genre: Rap
-      kjackvony:
-        genre: Religion
-      kylebober:
-        genre: Reggae
-      mnelson1:
-        genre: Technology
-      wadeleveille:
-        genre: Piano
+      mcarrierastonish: Matt Carrier
+      joshschaeffer: Josh Schaeffer
+      hzhu-astonish: Hongwei Zhu
+      bsawyer: Ben Sawyer
+      campbill: Bill Campbell
+      djwatson82: DJ Watson
+      dotDeeka: Derek Pavao
+      jonfromri: Jon Burgess
+      kjackvony: Kristin Jackvony
+      kylebober: Kyle Bober
+      mnelson1: Mike Nelson
+      wadeleveille: Wade Leveille
   buildServer:
+    users:
+      mcarrier: Matt Carrier
+      mcarrieruri: Matt Carrier
+      jschaeffer: Josh Schaeffer
+      hzhu: Hongwei Zhu
+      bsawyer: Ben Sawyer
+      bcampbell: Bill Campbell
+      dwatson: DJ Watson
+      dpavao: Derek Pavao
+      kjackvony: Kristin Jackvony
+      kbober: Kyle Bober
+      wade.leveille.jr: Wade Leveille
     failureClip:
       # - 'your-shit-broken'
       - 'fail-trombone'
