@@ -31,7 +31,7 @@ module Pushroulette
 
     post '/initialize' do
       Thread.new {
-        num = params[:num].nil? ? 5 : params[:num].to_i
+        num = params[:num].nil? ? 5 : params[:num].to_i 
         puts @users
         @users.each do |username, props|
           puts "username: #{username}"
