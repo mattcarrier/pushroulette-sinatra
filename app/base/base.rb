@@ -1,3 +1,4 @@
+require 'json'
 require 'sinatra/base'
 require 'yaml'
 
@@ -50,6 +51,12 @@ module Pushroulette
           downloadClips(num - numClips)
         end
       }
+    end
+
+    post '/speak' do
+      request.body.rewind  # in case someone already read it
+      data = JSON.parse request.body.read
+      speak data['msg'] if !data['msg'].nil?
     end
 
     def initialize(app)
