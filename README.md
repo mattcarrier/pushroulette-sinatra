@@ -19,6 +19,11 @@ Run Bundle install to install dependencies
 bundle install
 ```
 
+Linux (using aptitude):
+```bash
+apt-get install espeak
+```
+
 Requires [libav](https://libav.org/) for encoding and decoding all non-wav files (which work natively)
 
 ## Getting libav set up
@@ -42,7 +47,7 @@ apt-get install ffmpeg libavcodec-extra-53
 thin start
 
 # store some songs
-curl --data '' http://localhost:4567/store/clips?num=5
+curl --data '' http://localhost:4567/initialize
 ```
 
 ## Install Service
@@ -53,5 +58,5 @@ sudo cp pushroulette-sinatra/admin/initd/pushroulette-sinatra /etc/init.d/
 sudo service pushroulette-sinatra start
 
 # store some songs
-curl --data '' http://localhost:4567/store/clips?num=5
+curl --data '' http://localhost:4567/initialize
 ```
