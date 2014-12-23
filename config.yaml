@@ -12,8 +12,6 @@ pushroulette:
       genre: Comedy
     DJ Watson:
       genre: Classical
-    Derek Pavao:
-      genre: Folk
     Jon Burgess:
       genre: Holiday
     Kristin Jackvony:
@@ -22,6 +20,8 @@ pushroulette:
       genre: Holiday
     Mike Nelson:
       genre: Technology
+    Paolo De Roxas:
+      genre: Folk
     Wade Leveille:
       genre: Piano
   github:
@@ -37,6 +37,7 @@ pushroulette:
       kjackvony: Kristin Jackvony
       kylebober: Kyle Bober
       mnelson1: Mike Nelson
+      pderoxas: Paolo De Roxas
       wadeleveille: Wade Leveille
   buildServer:
     users:
@@ -50,6 +51,7 @@ pushroulette:
       dpavao: Derek Pavao
       kjackvony: Kristin Jackvony
       kbober: Kyle Bober
+      pderoxas: Paolo De Roxas
       wade.leveille.jr: Wade Leveille
     failureClip:
       # - 'your-shit-broken'
