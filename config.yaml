@@ -20,7 +20,7 @@ pushroulette:
       genre: Holiday
     Mike Nelson:
       genre: Technology
-    Paolo De Roxas:
+    Eric Bernier:
       genre: Folk
     Wade Leveille:
       genre: Piano
@@ -39,6 +39,7 @@ pushroulette:
       mnelson1: Mike Nelson
       pderoxas: Paolo De Roxas
       wadeleveille: Wade Leveille
+      ericmbernier: Eric Bernier
   buildServer:
     users:
       mcarrier: Matt Carrier
@@ -53,6 +54,7 @@ pushroulette:
       kbober: Kyle Bober
       pderoxas: Paolo De Roxas
       wade.leveille.jr: Wade Leveille
+      ebernier: Eric Bernier
     failureClip:
       # - 'your-shit-broken'
       - 'fail-trombone'
