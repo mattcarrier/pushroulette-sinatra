@@ -2,42 +2,31 @@ pushroulette:
   users:
     Matt Carrier:
       genre: Rap
-    Josh Schaeffer:
-      genre: Audiobooks
-    Hongwei Zhu:
-      genre: Metal
     Ben Sawyer:
       genre: Country
     Bill Campbell:
-      genre: Comedy
+      genre: Electronic
     DJ Watson:
       genre: Classical
     Jon Burgess:
       genre: Holiday
     Kristin Jackvony:
-      genre: Religion
-    Kyle Bober:
-      genre: Holiday
+      genre: Reggaeton
     Senior Nelson:
       genre: Latin
     Eric Bernier:
-      genre: Folk
+      genre: Disco
     Wade Leveille:
       genre: Piano
   github:
     users:
       mcarrierastonish: Matt Carrier
-      joshschaeffer: Josh Schaeffer
-      hzhu-astonish: Hongwei Zhu
       bsawyer: Ben Sawyer
       campbill: Bill Campbell
       djwatson82: DJ Watson
-      dotDeeka: Derek Pavao
       jonfromri: Jon Burgess
       kjackvony: Kristin Jackvony
-      kylebober: Kyle Bober
       mnelson1: Senior Nelson
-      pderoxas: Paolo De Roxas
       wadeleveille: Wade Leveille
       ericmbernier: Eric Bernier
   buildServer:
