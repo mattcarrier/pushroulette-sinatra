@@ -24,7 +24,7 @@ module Pushroulette
           speak("#{username}, pushed to #{repository}")
         end
       end
-      playClip(nil, true, user.nil? ? nil : user['genre'])
+      playClip(nil, true, user.nil? ? nil : user['genre'], true)
     end
 
     def githubConfig(config_key)

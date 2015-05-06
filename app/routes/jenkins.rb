@@ -20,12 +20,12 @@ module Pushroulette
 
       if jenkinsBuildFailed? data
         failure_clip = getFailureClip()
-        playClip("./app/clips/#{failure_clip}.mp3", false)
+        playClip("./app/clips/#{failure_clip}.mp3", false, nil, false)
         speak("#{jenkinsJob(data)}, failed")
         setPreviousBuildAsFailed(data['name'])
       elsif previousBuildFailed?(data['name'])
         back_to_normal_clip = getBackToNormalClip()
-        playClip("./app/clips/#{back_to_normal_clip}.mp3", false)
+        playClip("./app/clips/#{back_to_normal_clip}.mp3", false, nil, false)
         speak("#{jenkinsJob(data)}, is back to normal")
         setPreviousBuildAsSuccessful(data['name'])
       end

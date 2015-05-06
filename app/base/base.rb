@@ -1,11 +1,13 @@
 require 'json'
 require 'sinatra/base'
 require 'yaml'
+require 'mp3info'
 
 module Pushroulette
   class Base < Sinatra::Base
     PUSHROULETTE_DIR = '/etc/pushroulette-sinatra'
     LIBRARY_DIR = "#{PUSHROULETTE_DIR}/library"
+
 
     module OS
       def OS.windows?
@@ -31,7 +33,7 @@ module Pushroulette
 
     post '/initialize' do
       Thread.new {
-        num = params[:num].nil? ? 5 : params[:num].to_i 
+        num = params[:num].nil? ? 5 : params[:num].to_i
         puts @users
         @users.each do |username, props|
           puts "username: #{username}"
@@ -74,8 +76,17 @@ module Pushroulette
       @config['pushroulette'][config_key]
     end
 
+    def hipchatConfig(config_key)
+      pushrouletteConfig('hipchat')[config_key]
+    end
+
     def user(name)
       @users[name]
+    end
+
+    def postToHipchat(room, username, text)
+      client = HipChat::Client.new(hipchatConfig('token'))
+      client[room].send(username, text)
     end
 
     def speak(text)
@@ -84,13 +95,39 @@ module Pushroulette
       system "espeak \"#{text}\"" if OS.linux?
     end
 
-    def playClip(clip, deleteAfterPlay=false, *genre)
+    def postSoundFileInfoToHipchat(file)
+      Mp3Info.open("#{file}") do |mp3info|
+        puts mp3info
+      end
+
+      hipchatMessage = 'Now playing: '
+      Mp3Info.open("#{file}") do |mp3|
+        if mp3.tag2 and mp3.tag2.TIT2
+          hipchatMessage = hipchatMessage + mp3.tag2.TIT2 + '<br>'
+        end
+
+        if mp3.tag2 and mp3.tag2.TPE1
+          hipchatMessage = hipchatMessage + mp3.tag2.TPE1 + '<br>'
+        end
+
+        hipchatMessage = hipchatMessage + '<a href="' + mp3.tag2.COMM + '">' + mp3.tag2.COMM + '</a>'
+      end
+
+      postToHipchat(hipchatConfig('room'), hipchatConfig('username'), hipchatMessage)
+    end
+
+    def playClip(clip, deleteAfterPlay=false, *genre, postToHipchat)
       Thread.new {
         played = false
         songs = 0;
         dir = genre.any? ? "#{LIBRARY_DIR}/#{genre.first}/" : "#{LIBRARY_DIR}/"
         while !played do
           file = clip.nil? ? Dir.glob("#{dir}pushroulette_*.mp3").sample : clip
+
+          if postToHipchat
+            postSoundFileInfoToHipchat(file)
+          end
+
           played = system "avplay -autoexit -nodisp #{file}" || !clip.nil?
 
           if deleteAfterPlay
@@ -164,7 +201,12 @@ module Pushroulette
             open(dir + track.title + '.' + track.original_format, 'wb') do |file|
               file << open(track.download_url + '?client_id=cdbefc208d1db7a07c5af0e27e10b403', :allow_redirections => :all).read
               start = [*0..((track.duration / 1000) - 4)].sample
-              sliceCreated = system "avconv -ss #{start} -i \"#{file.path}\" -t 10 #{dir}pushroulette_#{SecureRandom.uuid}.mp3"
+              outfile = "#{dir}pushroulette_#{SecureRandom.uuid}.mp3"
+              puts outfile
+              sliceCreated = system "avconv -ss #{start} -i \"#{file.path}\" -t 10 #{outfile}"
+              Mp3Info.open("#{outfile}") do |mp3|
+                mp3.tag2.COMM = track.download_url + '?client_id=cdbefc208d1db7a07c5af0e27e10b403'
+              end
               File.delete(file)
 
               if !sliceCreated

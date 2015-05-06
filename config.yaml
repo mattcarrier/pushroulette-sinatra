@@ -50,3 +50,7 @@ pushroulette:
       # - 'fail-buzzer'
     backToNormalClip:
       - 'tada'
+  hipchat:
+    token: yourtoken
+    username: Push Roulette
+    room: pushroulette
