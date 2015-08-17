@@ -128,7 +128,9 @@ module Pushroulette
             postSoundFileInfoToHipchat(file)
           end
 
+          puts clip
           played = system "avplay -autoexit -nodisp #{file}" || !clip.nil?
+          puts played
 
           if deleteAfterPlay
             File.delete(file)
