@@ -8,7 +8,7 @@ pushroulette:
       genre: Electronic
     DJ Watson:
       genre: Classical
-      clip: chicken_dance.m4a
+      clip: ./app/clips/chicken_dance.m4a
     Jon Burgess:
       genre: Holiday
     Kristin Jackvony:
