@@ -85,8 +85,14 @@ module Pushroulette
     end
 
     def postToHipchat(room, username, text)
-      client = HipChat::Client.new(hipchatConfig('token'))
-      client[room].send(username, text)
+      if !room.nil? and !username.nil? and !hipchatConfig('token') and hipchatConfig('token') != "yourtoken"
+        begin
+          client = HipChat::Client.new(hipchatConfig('token'))
+          client[room].send(username, text)
+        rescue
+          puts "Error posting to hipchat"
+        end
+      end
     end
 
     def speak(text)
@@ -96,24 +102,27 @@ module Pushroulette
     end
 
     def postSoundFileInfoToHipchat(file)
-      Mp3Info.open("#{file}") do |mp3info|
-        puts mp3info
-      end
-
-      hipchatMessage = 'Now playing: '
-      Mp3Info.open("#{file}") do |mp3|
-        if mp3.tag2 and mp3.tag2.TIT2
-          hipchatMessage = hipchatMessage + mp3.tag2.TIT2 + '<br>'
+      begin
+        Mp3Info.open("#{file}") do |mp3info|
+          puts mp3info
         end
 
-        if mp3.tag2 and mp3.tag2.TPE1
-          hipchatMessage = hipchatMessage + mp3.tag2.TPE1 + '<br>'
+        hipchatMessage = 'Now playing: '
+        Mp3Info.open("#{file}") do |mp3|
+          if mp3.tag2 and mp3.tag2.TIT2
+            hipchatMessage = hipchatMessage + mp3.tag2.TIT2 + '<br>'
+          end
+
+          if mp3.tag2 and mp3.tag2.TPE1
+            hipchatMessage = hipchatMessage + mp3.tag2.TPE1 + '<br>'
+          end
+
+          hipchatMessage = hipchatMessage + '<a href="' + mp3.tag2.COMM + '">' + mp3.tag2.COMM + '</a>'
         end
-
-        hipchatMessage = hipchatMessage + '<a href="' + mp3.tag2.COMM + '">' + mp3.tag2.COMM + '</a>'
+        postToHipchat(hipchatConfig('room'), hipchatConfig('username'), hipchatMessage)
+      rescue
+        puts "Couldn't get mp3 info for #{file}"
       end
-
-      postToHipchat(hipchatConfig('room'), hipchatConfig('username'), hipchatMessage)
     end
 
     def playClip(clip, deleteAfterPlay=false, *genre, postToHipchat)
