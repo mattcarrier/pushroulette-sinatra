@@ -4,6 +4,7 @@ pushroulette:
       genre: Rap
     Ben Sawyer:
       genre: Country
+      clip: ./app/clips/macarena.m4a
     Bill Campbell:
       genre: Electronic
     DJ Watson:
