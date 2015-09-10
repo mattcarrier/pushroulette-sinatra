@@ -1,51 +1,18 @@
 pushroulette:
   users:
-    Matt Carrier:
+    Hard To Handle:
       genre: Rap
-    Ben Sawyer:
+    Jimmy Two Pumps:
       genre: Country
       clip: ./app/clips/macarena.m4a
-    Bill Campbell:
-      genre: Electronic
-    DJ Watson:
-      genre: Classical
-      clip: ./app/clips/chicken_dance.m4a
-    Jon Burgess:
-      genre: Holiday
-    Kristin Jackvony:
-      genre: Reggaeton
-    Senior Nelson:
-      genre: Latin
-    Eric Bernier:
-      genre: Disco
-    Wade Leveille:
-      genre: Piano
   github:
     users:
-      mcarrierastonish: Matt Carrier
-      bsawyer: Ben Sawyer
-      campbill: Bill Campbell
-      djwatson82: DJ Watson
-      jonfromri: Jon Burgess
-      kjackvony: Kristin Jackvony
-      mnelson1: Senior Nelson
-      wadeleveille: Wade Leveille
-      ericmbernier: Eric Bernier
+      hahd2handle: Hard To Handle
+      j2pumps: Jimmy Two Pumps
   buildServer:
     users:
-      mcarrier: Matt Carrier
-      mcarrieruri: Matt Carrier
-      jschaeffer: Josh Schaeffer
-      hzhu: Hongwei Zhu
-      bsawyer: Ben Sawyer
-      bcampbell: Bill Campbell
-      dwatson: DJ Watson
-      dpavao: Derek Pavao
-      kjackvony: Kristin Jackvony
-      kbober: Kyle Bober
-      pderoxas: Paolo De Roxas
-      wade.leveille.jr: Wade Leveille
-      ebernier: Eric Bernier
+      h2h: Hard To Handle
+      jimmy: Jimmy Two Pumps
     failureClip:
       # - 'your-shit-broken'
       - 'fail-trombone'
